@@ -23,7 +23,7 @@
     return self;
 }
 
-- (void)viewDidLoad
+- (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidLoad];
     [_webView loadRequest:[NSURLRequest requestWithURL:[NSURL URLWithString:_url]]];

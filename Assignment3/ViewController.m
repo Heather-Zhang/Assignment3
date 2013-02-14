@@ -24,6 +24,13 @@
     
     _allSelected = NO;
     
+    [_selectAll setTitle:@"Select All" forState:UIControlStateNormal];
+    
+    [_removeAll setTitle:@"Remove Fruit" forState:UIControlStateNormal];
+    
+    [_addAll setTitle:@"Add Fruit" forState:UIControlStateNormal];
+    
+    
     _cart = [NSMutableArray arrayWithCapacity:0];
     
     for(int i = 0; i < 50; i++){
@@ -129,6 +136,7 @@
     detailView.url = selectedFruit.url;
     
     [self.navigationController pushViewController:detailView animated:YES];
+    //[self.navigationController popViewControllerAnimated:YES];
 }
 
 @end
