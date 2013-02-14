@@ -30,6 +30,12 @@
     
     [_addAll setTitle:@"Add Fruit" forState:UIControlStateNormal];
     
+    [_removeAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    
+    [_addAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    
+    _addAll.enabled = NO;
+    
     
     _cart = [NSMutableArray arrayWithCapacity:0];
     
@@ -64,7 +70,6 @@
         [_selectAll setTitle:@"Select None" forState:UIControlStateNormal];
     } else {
         [_selectAll setTitle:@"Select All" forState:UIControlStateNormal];
-        _selectAll.enabled = NO;
     }
     [_cartView reloadData];
 }
@@ -74,7 +79,6 @@
 {
     _cart = [NSMutableArray arrayWithCapacity:0];
     _removeAll.enabled = NO;
-    [_removeAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     _addAll.enabled = YES;
     
     [_cartView reloadData];
@@ -98,7 +102,6 @@
     }
     
     _addAll.enabled = NO;
-    [_addAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
     _removeAll.enabled = YES;
     
     [_cartView reloadData];
