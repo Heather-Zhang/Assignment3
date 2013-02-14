@@ -122,6 +122,10 @@
 
 -(int) tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    if([_cart count] == 0)
+    {
+        return 1;
+    }
     return [_cart count];
 }
 
@@ -153,17 +157,24 @@
 
 -(void) tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    Fruit * selectedFruit = [_cart objectAtIndex:indexPath.row];
+    if([_cart count] == 0)
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    else
+    {
+        Fruit * selectedFruit = [_cart objectAtIndex:indexPath.row];
     
-    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+        [tableView deselectRowAtIndexPath:indexPath animated:YES];
     
-    Assignment3DetailViewController * detailView = [[Assignment3DetailViewController alloc] initWithNibName:@"Assignment3DetailViewController" bundle:nil];
+        Assignment3DetailViewController * detailView = [[Assignment3DetailViewController alloc] initWithNibName:@"Assignment3DetailViewController" bundle:nil];
     
-    detailView.title = selectedFruit.name;
-    detailView.url = selectedFruit.url;
+        detailView.title = selectedFruit.name;
+        detailView.url = selectedFruit.url;
     
-    [self.navigationController pushViewController:detailView animated:YES];
-    //[self.navigationController popViewControllerAnimated:YES];
+        [self.navigationController pushViewController:detailView animated:YES];
+        //[self.navigationController popViewControllerAnimated:YES];
+        
+    }
+    
 }
 
 @end
