@@ -64,6 +64,7 @@
         [_selectAll setTitle:@"Select None" forState:UIControlStateNormal];
     } else {
         [_selectAll setTitle:@"Select All" forState:UIControlStateNormal];
+        _selectAll.enabled = NO;
     }
     [_cartView reloadData];
 }
@@ -71,13 +72,36 @@
 //Should remove all of the fruit in the cart.
 -(IBAction)removeAllFruitInCart:(id)sender
 {
+    _cart = [NSMutableArray arrayWithCapacity:0];
+    _removeAll.enabled = NO;
+    [_removeAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    _addAll.enabled = YES;
     
+    [_cartView reloadData];
 }
 
 //should add 50 bananas to the cart and display them!
 -(IBAction)fillCartWithBananas:(id)sender
 {
+    _cart = [NSMutableArray arrayWithCapacity:0];
     
+    for(int i = 0; i < 50; i++){
+        NSString * fruitName = [NSString stringWithFormat:@"Banana %d", i];
+        
+        if((i % 10) == 0){
+            fruitName = [NSString stringWithFormat:@"Free Banana %d", i];
+        }
+        
+        Fruit * anonFruit = [[Fruit alloc] initWithWithName:fruitName andColor:@"Yellow" andShape:@"Curved"];
+        anonFruit.url = @"http://en.m.wikipedia.org/wiki/Banana";
+        [_cart addObject:anonFruit];
+    }
+    
+    _addAll.enabled = NO;
+    [_addAll setTitleColor:[UIColor lightGrayColor] forState:UIControlStateDisabled];
+    _removeAll.enabled = YES;
+    
+    [_cartView reloadData];
 }
 
 
